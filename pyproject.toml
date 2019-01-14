@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "philiprehberger-slug"
+version = "0.1.0"
+description = "URL slug generation with transliteration and uniqueness"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Philip Rehberger" }]
+keywords = ["slug", "url", "transliteration", "seo", "text"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/philiprehberger/py-slug"
+Repository = "https://github.com/philiprehberger/py-slug"
+Issues = "https://github.com/philiprehberger/py-slug/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/philiprehberger_slug"]
