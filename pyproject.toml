@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-slug"
-version = "0.1.4"
-description = "URL slug generation with transliteration and uniqueness"
+version = "0.2.0"
+description = "URL slug generation with transliteration and uniqueness."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -31,3 +31,9 @@ Changelog = "https://github.com/philiprehberger/py-slug/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/philiprehberger_slug"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+strict = true
