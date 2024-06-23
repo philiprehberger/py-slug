@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-slug"
-version = "0.2.0"
+version = "0.2.1"
 description = "URL slug generation with transliteration and uniqueness."
 readme = "README.md"
 license = "MIT"
