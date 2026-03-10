@@ -1,0 +1,9 @@
+# Changelog
+
+## 0.1.0 (2026-03-10)
+
+- Initial release
+- Unicode transliteration to ASCII
+- Configurable separator and max length
+- Unique slug generation with suffix
+- HTML tag stripping
