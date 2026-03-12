@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-slug"
-version = "0.1.0"
+version = "0.1.1"
 description = "URL slug generation with transliteration and uniqueness"
 readme = "README.md"
 license = "MIT"
@@ -20,9 +20,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/philiprehberger/py-slug"
+Homepage = "https://github.com/philiprehberger/py-slug#readme"
 Repository = "https://github.com/philiprehberger/py-slug"
 Issues = "https://github.com/philiprehberger/py-slug/issues"
+Changelog = "https://github.com/philiprehberger/py-slug/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/philiprehberger_slug"]
