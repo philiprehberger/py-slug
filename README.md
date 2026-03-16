@@ -55,6 +55,14 @@ strip_html("<p>Hello <b>World</b></p>")  # "Hello World"
 - `unique_slugify(text, existing, separator="-", max_length=0)` — Generate a unique slug with numeric suffix
 - `strip_html(text)` — Remove HTML tags from text
 
+
+## Development
+
+```bash
+pip install -e .
+python -m pytest tests/ -v
+```
+
 ## License
 
 MIT
