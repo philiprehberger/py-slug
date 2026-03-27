@@ -3,6 +3,7 @@
 [![Tests](https://github.com/philiprehberger/py-slug/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-slug/actions/workflows/publish.yml)
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-slug.svg)](https://pypi.org/project/philiprehberger-slug/)
 [![License](https://img.shields.io/github/license/philiprehberger/py-slug)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 URL slug generation with transliteration and uniqueness.
 
