@@ -11,6 +11,7 @@ __all__ = [
     "slugify",
     "slug_from_parts",
     "unique_slugify",
+    "is_valid_slug",
     "strip_html",
 ]
 
@@ -167,6 +168,31 @@ def unique_slugify(
         if candidate not in existing_set:
             return candidate
         counter += 1
+
+
+def is_valid_slug(text: str, separator: str = "-") -> bool:
+    """Return True if *text* is already in canonical slug form.
+
+    A canonical slug:
+
+    - is non-empty,
+    - is fully lowercase,
+    - contains only ``a-z``, ``0-9``, and the separator character,
+    - has no leading or trailing separator,
+    - has no consecutive separators.
+
+    Args:
+        text: The string to test.
+        separator: The expected separator character (default ``"-"``).
+
+    Returns:
+        ``True`` if *text* matches the canonical slug shape, ``False`` otherwise.
+    """
+    if not text:
+        return False
+    sep_escaped = re.escape(separator)
+    pattern = re.compile(rf"^[a-z0-9]+(?:{sep_escaped}[a-z0-9]+)*$")
+    return bool(pattern.fullmatch(text))
 
 
 def strip_html(text: str) -> str:

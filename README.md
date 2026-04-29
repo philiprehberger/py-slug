@@ -69,6 +69,17 @@ existing = {"hello-world", "hello-world-2"}
 unique_slugify("Hello World", existing)  # "hello-world-3"
 ```
 
+### Validate a slug
+
+```python
+from philiprehberger_slug import is_valid_slug
+
+is_valid_slug("hello-world")    # True
+is_valid_slug("Hello World")    # False
+is_valid_slug("--bad--")        # False
+is_valid_slug("hello_world", separator="_")  # True
+```
+
 ### Strip HTML
 
 ```python
@@ -84,6 +95,7 @@ strip_html("<p>Hello <b>World</b></p>")  # "Hello World"
 | `slugify(text, separator, max_length, lowercase, reserved, transliterate)` | Generate a URL-safe slug from text |
 | `slug_from_parts(*parts, separator)` | Join multiple strings into a single slug |
 | `unique_slugify(text, existing, separator, max_length)` | Generate a unique slug with numeric suffix |
+| `is_valid_slug(text, separator)` | Return `True` if `text` is already in canonical slug form |
 | `strip_html(text)` | Remove HTML tags from text |
 | `ReservedSlugError` | Raised when a slug matches a reserved word |
 

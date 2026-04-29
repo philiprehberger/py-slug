@@ -2,10 +2,11 @@ import pytest
 
 from philiprehberger_slug import (
     ReservedSlugError,
+    is_valid_slug,
     slugify,
     slug_from_parts,
-    unique_slugify,
     strip_html,
+    unique_slugify,
 )
 
 
@@ -174,3 +175,43 @@ def test_slug_from_parts_all_empty():
 def test_slug_from_parts_with_special_chars():
     result = slug_from_parts("Blog", "Straße & Weg")
     assert result == "blog-strasse-and-weg"
+
+
+# --- is_valid_slug tests ---
+
+
+def test_is_valid_slug_canonical():
+    assert is_valid_slug("hello-world") is True
+    assert is_valid_slug("a") is True
+    assert is_valid_slug("a-b-c-1-2-3") is True
+
+
+def test_is_valid_slug_rejects_uppercase():
+    assert is_valid_slug("Hello-World") is False
+
+
+def test_is_valid_slug_rejects_spaces():
+    assert is_valid_slug("hello world") is False
+
+
+def test_is_valid_slug_rejects_leading_or_trailing_separator():
+    assert is_valid_slug("-hello") is False
+    assert is_valid_slug("hello-") is False
+
+
+def test_is_valid_slug_rejects_consecutive_separators():
+    assert is_valid_slug("hello--world") is False
+    assert is_valid_slug("--bad--") is False
+
+
+def test_is_valid_slug_rejects_empty():
+    assert is_valid_slug("") is False
+
+
+def test_is_valid_slug_custom_separator():
+    assert is_valid_slug("hello_world", separator="_") is True
+    assert is_valid_slug("hello-world", separator="_") is False
+
+
+def test_is_valid_slug_rejects_non_ascii():
+    assert is_valid_slug("café") is False

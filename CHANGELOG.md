@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 (2026-04-28)
+
+- Add `is_valid_slug(text, separator="-")` — checks whether a string is already a canonical slug (lowercase, only `[a-z0-9]` plus the separator, no leading/trailing/duplicate separators)
+
 ## 0.2.1 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section
