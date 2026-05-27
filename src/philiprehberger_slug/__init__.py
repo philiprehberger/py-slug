@@ -9,6 +9,7 @@ import unicodedata
 __all__ = [
     "ReservedSlugError",
     "slugify",
+    "slugify_bulk",
     "slug_from_parts",
     "unique_slugify",
     "is_valid_slug",
@@ -102,6 +103,49 @@ def slugify(
             raise ReservedSlugError(text, reserved)
 
     return text
+
+
+def slugify_bulk(
+    texts: list[str],
+    separator: str = "-",
+    max_length: int = 0,
+    lowercase: bool = True,
+    reserved: list[str] | None = None,
+    transliterate: dict[str, str] | None = None,
+) -> list[str]:
+    """Slugify a batch of strings with the same settings.
+
+    Returns a list whose order matches ``texts``. Each element uses the same
+    options as :func:`slugify`. Useful for migration scripts, bulk admin tools,
+    and CSV importers.
+
+    Args:
+        texts: Input strings to slugify.
+        separator: Character used between words. Defaults to ``"-"``.
+        max_length: Maximum length per slug. 0 means no limit.
+        lowercase: Whether to lowercase each result.
+        reserved: List of reserved slugs. Raises :class:`ReservedSlugError`
+            on the first match.
+        transliterate: Custom transliteration map merged with built-in defaults.
+
+    Returns:
+        A list of slug strings, one per input.
+
+    Raises:
+        ReservedSlugError: If any generated slug matches a reserved word. The
+            exception's ``slug`` attribute identifies which input collided.
+    """
+    return [
+        slugify(
+            text,
+            separator=separator,
+            max_length=max_length,
+            lowercase=lowercase,
+            reserved=reserved,
+            transliterate=transliterate,
+        )
+        for text in texts
+    ]
 
 
 def slug_from_parts(*parts: str, separator: str = "-") -> str:

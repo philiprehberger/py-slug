@@ -4,6 +4,8 @@
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-slug.svg)](https://pypi.org/project/philiprehberger-slug/)
 [![Last updated](https://img.shields.io/github/last-commit/philiprehberger/py-slug)](https://github.com/philiprehberger/py-slug/commits/main)
 
+![philiprehberger-slug](https://raw.githubusercontent.com/philiprehberger/py-slug/main/package-card.webp)
+
 URL slug generation with transliteration and uniqueness.
 
 ## Installation
@@ -88,11 +90,26 @@ from philiprehberger_slug import strip_html
 strip_html("<p>Hello <b>World</b></p>")  # "Hello World"
 ```
 
+### Bulk Slugify
+
+```python
+from philiprehberger_slug import slugify_bulk
+
+titles = ["Hello World", "Über München", "C++ & Friends"]
+slugify_bulk(titles)
+# ["hello-world", "uber-munchen", "c-and-friends"]
+
+# Cap length per slug
+slugify_bulk(["Long article title here"], max_length=10)
+# ["long"]
+```
+
 ## API
 
 | Function / Class | Description |
 |------------------|-------------|
 | `slugify(text, separator, max_length, lowercase, reserved, transliterate)` | Generate a URL-safe slug from text |
+| `slugify_bulk(texts, separator, max_length, lowercase, reserved, transliterate)` | Slugify a batch of strings with the same settings |
 | `slug_from_parts(*parts, separator)` | Join multiple strings into a single slug |
 | `unique_slugify(text, existing, separator, max_length)` | Generate a unique slug with numeric suffix |
 | `is_valid_slug(text, separator)` | Return `True` if `text` is already in canonical slug form |

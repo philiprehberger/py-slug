@@ -4,6 +4,7 @@ from philiprehberger_slug import (
     ReservedSlugError,
     is_valid_slug,
     slugify,
+    slugify_bulk,
     slug_from_parts,
     strip_html,
     unique_slugify,
@@ -215,3 +216,30 @@ def test_is_valid_slug_custom_separator():
 
 def test_is_valid_slug_rejects_non_ascii():
     assert is_valid_slug("café") is False
+
+
+def test_slugify_bulk_preserves_order():
+    assert slugify_bulk(["Hello World", "Foo Bar"]) == ["hello-world", "foo-bar"]
+
+
+def test_slugify_bulk_empty_list():
+    assert slugify_bulk([]) == []
+
+
+def test_slugify_bulk_applies_options_to_each():
+    out = slugify_bulk(
+        ["Hello World", "Über München"],
+        separator="_",
+        max_length=12,
+    )
+    assert out == ["hello_world", "uber_munchen"]
+
+
+def test_slugify_bulk_raises_on_reserved():
+    with pytest.raises(ReservedSlugError):
+        slugify_bulk(["Admin", "Login"], reserved=["admin"])
+
+
+def test_slugify_bulk_with_custom_transliteration():
+    out = slugify_bulk(["AB"], transliterate={"A": "X"})
+    assert out == ["xb"]

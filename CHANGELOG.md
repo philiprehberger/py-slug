@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 (2026-05-26)
+
+- Add `slugify_bulk(texts, ...)` — batch slugifier that applies the same settings to a list of strings, returning the slugs in input order
+- Add package-card image to README
+
 ## 0.3.0 (2026-04-28)
 
 - Add `is_valid_slug(text, separator="-")` — checks whether a string is already a canonical slug (lowercase, only `[a-z0-9]` plus the separator, no leading/trailing/duplicate separators)
